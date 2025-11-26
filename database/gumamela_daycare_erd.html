@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gumamela Daycare - Entity Relationship Diagram</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .erd-container {
+            width: 100%;
+            height: 1200px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            position: relative;
+            background: #fafafa;
+            overflow: auto;
+        }
+        
+        .entity {
+            position: absolute;
+            background: white;
+            border: 2px solid #333;
+            border-radius: 8px;
+            min-width: 200px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .entity-header {
+            background: #667eea;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 6px 6px 0 0;
+        }
+        
+        .entity-body {
+            padding: 10px;
+        }
+        
+        .attribute {
+            padding: 3px 0;
+            font-size: 12px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .primary-key {
+            font-weight: bold;
+            color: #d63384;
+        }
+        
+        .foreign-key {
+            color: #0d6efd;
+            font-style: italic;
+        }
+        
+        .relationship-line {
+            position: absolute;
+            background: #333;
+            z-index: 1;
+        }
+        
+        .legend {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 12px;
+        }
+        
+        .legend-item {
+            margin: 5px 0;
+        }
+        
+        .pk { color: #d63384; font-weight: bold; }
+        .fk { color: #0d6efd; font-style: italic; }
+        
+        /* Entity positioning - Grid layout to prevent overlapping */
+        .users { top: 50px; left: 50px; }
+        .students { top: 50px; left: 300px; }
+        .guardians { top: 50px; left: 550px; }
+        .schedules { top: 50px; left: 800px; }
+        .system-settings { top: 50px; left: 1050px; }
+        
+        .student-schedules { top: 250px; left: 50px; }
+        .attendance { top: 250px; left: 300px; }
+        .progress-reports { top: 250px; left: 550px; }
+        .learning-activities { top: 250px; left: 800px; }
+        .messages { top: 250px; left: 1050px; }
+        
+        .announcements { top: 450px; left: 50px; }
+        .notifications { top: 450px; left: 300px; }
+        .events { top: 450px; left: 550px; }
+        .faqs { top: 450px; left: 800px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gumamela Daycare Management System - ERD</h1>
+        
+        <div class="erd-container">
+            <!-- Legend -->
+            <div class="legend">
+                <h4>Legend</h4>
+                <div class="legend-item"><span class="pk">PK</span> - Primary Key</div>
+                <div class="legend-item"><span class="fk">FK</span> - Foreign Key</div>
+                <div class="legend-item">Lines show relationships</div>
+            </div>
+            
+            <!-- Users Entity -->
+            <div class="entity users">
+                <div class="entity-header">USERS</div>
+                <div class="entity-body">
+                    <div class="attribute primary-key">🔑 id (PK)</div>
+                    <div class="attribute">username</div>
+                    <div class="attribute">email</div>
+                    <div class="attribute">password</div>
+                    <div class="attribute">first_name</div>
+                    <div class="attribute">last_name</div>
+                    <div class="attribute">phone</div>
+                    <div class="attribute">address</div>
+                    <div class="attribute">profile_photo_path</div>
+                    <div class="attribute">user_type</div>
+                    <div class="attribute">status</div>
+                    <div class="attribute">created_at</div>
+                    <div class="attribute">updated_at</div>
+                </div>
+            </div>
+            
+            <!-- Students Entity -->
+            <div class="entity students">
+                <div class="entity-header">STUDENTS</div>
+                <div class="entity-body">
+                    <div class="attribute primary-key">🔑 id (PK)</div>
+                    <div class="attribute foreign-key">🔗 parent_id (FK)</div>
+                    <div class="attribute">first_name</div>
+                    <div class="attribute">middle_name</div>
+                    <div class="attribute">last_name</div>
+                    <div class="attribute">suffix</div>
+                    <div class="attribute">date_of_birth</div>
+                    <div class="attribute">gender</div>
+                    <div class="attribute foreign-key">🔗 schedule_id (FK)</div>
+                    <div class="attribute">medical_conditions</div>
+                    <div class="attribute">allergies</div>
+                    <div class="attribute">emergency_contact_name</div>
+                    <div class="attribute">emergency_contact_phone</div>
+                    <div class="attribute">photo_path</div>
+                    <div class="attribute">birth_certificate_path</div>
+                    <div class="attribute">status</div>
+                    <div class="attribute">enrollment_date</div>
+                </div>
+            </div>
+            
+            <!-- Guardians Entity -->
+            <div class="entity guardians">
+                <div class="entity-header">GUARDIANS</div>
+                <div class="entity-body">
+                    <div class="attribute primary-key">🔑 id (PK)</div>
+                    <div class="attribute foreign-key">🔗 parent_id (FK)</div>
+                    <div class="attribute">first_name</div>
+                    <div class="attribute">last_name</div>
+                    <div class="attribute">relationship</div>
+                    <div class="attribute">phone</div>
+                    <div class="attribute">email</div>
+                    <div class="attribute">address</div>
+                    <div class="attribute">photo_path</div>
+                    <div class="attribute">is_authorized_pickup</div>
+                </div>
+            </div>
+            
+            <!-- Schedules Entity -->
+            <div class="entity schedules">
+                <div class="entity-header">SCHEDULES</div>
+                <div class="entity-body">
+                    <div class="attribute primary-key">🔑 id (PK)</div>
+                    <div class="attribute">schedule_name</div>
+                    <div class="attribute">start_time</div>
+                    <div class="attribute">end_time</div>
+                    <div class="attribute">max_capacity</div>
+                    <div class="attribute">current_enrolled</div>
+                    <div class="attribute">is_active</div>
+                </div>
+            </div>
+            
+            <!-- Student Schedules Entity -->
+            <div class="entity student-schedules">
+                <div class="entity-header">STUDENT_SCHEDULES</div>
+                <div class="entity-body">
+                    <div class="attribute primary-key">🔑 id (PK)</div>
+                    <div class="attribute foreign-key">🔗 student_id (FK)</div>
+                    <div class="attribute foreign-key">🔗 schedule_id (FK)</div>
+                    <div class="attribute foreign-key">🔗 assigned_by (FK)</div>
+                    <div class="attribute">assigned_date</div>
+                    <div class="attribute">is_active</div>
+                    <div class="attribute">notes</div>
+                </div>
+            </div>
+            
+            <!-- Attendance Entity -->
+            <div class="entity attendance">
+                <div class="entity-header">ATTENDANCE</div>
+                <div class="entity-body">
+                    <div class="attribute primary-key">🔑 id (PK)</div>
+                    <div class="attribute foreign-key">🔗 student_id (FK)</div>
+                    <div class="attribute">date</div>
+                    <div class="attribute">status</div>
+                    <div class="attribute">check_in_time</div>
+                    <div class="attribute">check_out_time</div>
+                    <div class="attribute">notes</div>
+                    <div class="attribute foreign-key">🔗 recorded_by (FK)</div>
+                </div>
+            </div>
+            
+            <!-- Progress Reports Entity -->
+            <div class="entity progress-reports">
+                <div class="entity-header">PROGRESS_REPORTS</div>
+                <div class="entity-body">
+                    <div class="attribute primary-key">🔑 id (PK)</div>
+                    <div class="attribute foreign-key">🔗 student_id (FK)</div>
+                    <div class="attribute">report_date</div>
+                    <div class="attribute">academic_performance</div>
+                    <div class="attribute">social_skills</div>
+                    <div class="attribute">physical_development</div>
+                    <div class="attribute">behavioral_notes</div>
+                    <div class="attribute">teacher_comments</div>
+                    <div class="attribute">overall_rating</div>
+                    <div class="attribute foreign-key">🔗 created_by (FK)</div>
+                </div>
+            </div>
+            
+            <!-- Learning Activities Entity -->
+            <div class="entity learning-activities">
+                <div class="entity-header">LEARNING_ACTIVITIES</div>
+                <div class="entity-body">
+                    <div class="attribute primary-key">🔑 id (PK)</div>
+                    <div class="attribute">title</div>
+                    <div class="attribute">description</div>
+                    <div class="attribute">age_group</div>
+                    <div class="attribute">materials_needed</div>
+                    <div class="attribute">instructions</div>
+                    <div class="attribute">learning_objectives</div>
+                    <div class="attribute">attachment_path</div>
+                    <div class="attribute">attachment_name</div>
+                    <div class="attribute">attachment_size</div>
+                    <div class="attribute">attachment_type</div>
+                    <div class="attribute foreign-key">🔗 created_by (FK)</div>
+                    <div class="attribute">status</div>
+                </div>
+            </div>
+            
+            <!-- Messages Entity -->
+            <div class="entity messages">
+                <div class="entity-header">MESSAGES</div>
+                <div class="entity-body">
+                    <div class="attribute primary-key">🔑 id (PK)</div>
+                    <div class="attribute foreign-key">🔗 sender_id (FK)</div>
+                    <div class="attribute foreign-key">🔗 receiver_id (FK)</div>
+                    <div class="attribute">subject</div>
+                    <div class="attribute">message</div>
+                    <div class="attribute">is_read</div>
+                    <div class="attribute foreign-key">🔗 parent_message_id (FK)</div>
+                    <div class="attribute">attachment_path</div>
+                    <div class="attribute">attachment_name</div>
+                    <div class="attribute">attachment_size</div>
+                </div>
+            </div>
+            
+            <!-- Announcements Entity -->
+            <div class="entity announcements">
+                <div class="entity-header">ANNOUNCEMENTS</div>
+                <div class="entity-body">
+                    <div class="attribute primary-key">🔑 id (PK)</div>
+                    <div class="attribute">title</div>
+                    <div class="attribute">content</div>
+                    <div class="attribute foreign-key">🔗 author_id (FK)</div>
+                    <div class="attribute">priority</div>
+                    <div class="attribute">status</div>
+                </div>
+            </div>
+            
+            <!-- Notifications Entity -->
+            <div class="entity notifications">
+                <div class="entity-header">NOTIFICATIONS</div>
+                <div class="entity-body">
+                    <div class="attribute primary-key">🔑 id (PK)</div>
+                    <div class="attribute foreign-key">🔗 user_id (FK)</div>
+                    <div class="attribute">title</div>
+                    <div class="attribute">message</div>
+                    <div class="attribute">type</div>
+                    <div class="attribute">is_read</div>
+                </div>
+            </div>
+            
+            <!-- Events Entity -->
+            <div class="entity events">
+                <div class="entity-header">EVENTS</div>
+                <div class="entity-body">
+                    <div class="attribute primary-key">🔑 id (PK)</div>
+                    <div class="attribute">title</div>
+                    <div class="attribute">description</div>
+                    <div class="attribute">event_date</div>
+                    <div class="attribute">start_time</div>
+                    <div class="attribute">end_time</div>
+                    <div class="attribute">location</div>
+                    <div class="attribute">max_participants</div>
+                    <div class="attribute">registration_required</div>
+                    <div class="attribute foreign-key">🔗 created_by (FK)</div>
+                    <div class="attribute">status</div>
+                </div>
+            </div>
+            
+            <!-- FAQs Entity -->
+            <div class="entity faqs">
+                <div class="entity-header">FAQS</div>
+                <div class="entity-body">
+                    <div class="attribute primary-key">🔑 id (PK)</div>
+                    <div class="attribute">question</div>
+                    <div class="attribute">answer</div>
+                    <div class="attribute">category</div>
+                    <div class="attribute">display_order</div>
+                    <div class="attribute">status</div>
+                    <div class="attribute foreign-key">🔗 created_by (FK)</div>
+                </div>
+            </div>
+            
+            <!-- System Settings Entity -->
+            <div class="entity system-settings">
+                <div class="entity-header">SYSTEM_SETTINGS</div>
+                <div class="entity-body">
+                    <div class="attribute primary-key">🔑 id (PK)</div>
+                    <div class="attribute">setting_key</div>
+                    <div class="attribute">setting_value</div>
+                    <div class="attribute">description</div>
+                    <div class="attribute foreign-key">🔗 updated_by (FK)</div>
+                </div>
+            </div>
+            
+            <!-- SVG for relationship lines -->
+            <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2;">
+                <defs>
+                    <!-- Different arrow markers for different relationship types -->
+                    <marker id="primary-arrow" markerWidth="12" markerHeight="8" 
+                            refX="10" refY="4" orient="auto">
+                        <polygon points="0 0, 12 4, 0 8" fill="#e74c3c" />
+                    </marker>
+                    <marker id="secondary-arrow" markerWidth="12" markerHeight="8" 
+                            refX="10" refY="4" orient="auto">
+                        <polygon points="0 0, 12 4, 0 8" fill="#3498db" />
+                    </marker>
+                    <marker id="junction-arrow" markerWidth="12" markerHeight="8" 
+                            refX="10" refY="4" orient="auto">
+                        <polygon points="0 0, 12 4, 0 8" fill="#9b59b6" />
+                    </marker>
+                    <marker id="communication-arrow" markerWidth="12" markerHeight="8" 
+                            refX="10" refY="4" orient="auto">
+                        <polygon points="0 0, 12 4, 0 8" fill="#f39c12" />
+                    </marker>
+                </defs>
+                
+                <!-- PRIMARY RELATIONSHIPS (Red) - Core parent-child relationships -->
+                <!-- Users to Students -->
+                <line x1="250" y1="150" x2="300" y2="150" stroke="#e74c3c" stroke-width="3" marker-end="url(#primary-arrow)"/>
+                <rect x="260" y="135" width="30" height="15" fill="white" stroke="#e74c3c" rx="3"/>
+                <text x="275" y="145" font-size="11" text-anchor="middle" fill="#e74c3c" font-weight="bold">1:N</text>
+                
+                <!-- Users to Guardians -->
+                <line x1="250" y1="100" x2="550" y2="100" stroke="#e74c3c" stroke-width="3" marker-end="url(#primary-arrow)"/>
+                <rect x="385" y="85" width="30" height="15" fill="white" stroke="#e74c3c" rx="3"/>
+                <text x="400" y="95" font-size="11" text-anchor="middle" fill="#e74c3c" font-weight="bold">1:N</text>
+                
+                <!-- SCHEDULE RELATIONSHIPS (Purple) -->
+                <!-- Schedules to Students -->
+                <line x1="800" y1="150" x2="500" y2="150" stroke="#9b59b6" stroke-width="3" marker-end="url(#junction-arrow)"/>
+                <rect x="635" y="135" width="30" height="15" fill="white" stroke="#9b59b6" rx="3"/>
+                <text x="650" y="145" font-size="11" text-anchor="middle" fill="#9b59b6" font-weight="bold">1:N</text>
+                
+                <!-- Students to Student Schedules -->
+                <line x1="400" y1="200" x2="150" y2="250" stroke="#9b59b6" stroke-width="3" marker-end="url(#junction-arrow)"/>
+                <rect x="260" y="215" width="30" height="15" fill="white" stroke="#9b59b6" rx="3"/>
+                <text x="275" y="225" font-size="11" text-anchor="middle" fill="#9b59b6" font-weight="bold">1:N</text>
+                
+                <!-- Schedules to Student Schedules -->
+                <line x1="800" y1="200" x2="250" y2="300" stroke="#9b59b6" stroke-width="3" marker-end="url(#junction-arrow)"/>
+                <rect x="510" y="235" width="30" height="15" fill="white" stroke="#9b59b6" rx="3"/>
+                <text x="525" y="245" font-size="11" text-anchor="middle" fill="#9b59b6" font-weight="bold">1:N</text>
+                
+                <!-- ACADEMIC RELATIONSHIPS (Blue) - Student academic data -->
+                <!-- Students to Attendance -->
+                <line x1="400" y1="200" x2="400" y2="250" stroke="#3498db" stroke-width="3" marker-end="url(#secondary-arrow)"/>
+                <rect x="410" y="215" width="30" height="15" fill="white" stroke="#3498db" rx="3"/>
+                <text x="425" y="225" font-size="11" text-anchor="middle" fill="#3498db" font-weight="bold">1:N</text>
+                
+                <!-- Students to Progress Reports -->
+                <line x1="500" y1="150" x2="650" y2="250" stroke="#3498db" stroke-width="3" marker-end="url(#secondary-arrow)"/>
+                <rect x="560" y="185" width="30" height="15" fill="white" stroke="#3498db" rx="3"/>
+                <text x="575" y="195" font-size="11" text-anchor="middle" fill="#3498db" font-weight="bold">1:N</text>
+                
+                <!-- COMMUNICATION RELATIONSHIPS (Orange) -->
+                <!-- Users to Messages -->
+                <line x1="250" y1="120" x2="1050" y2="280" stroke="#f39c12" stroke-width="3" marker-end="url(#communication-arrow)"/>
+                <rect x="635" y="185" width="30" height="15" fill="white" stroke="#f39c12" rx="3"/>
+                <text x="650" y="195" font-size="11" text-anchor="middle" fill="#f39c12" font-weight="bold">1:N</text>
+                
+                <!-- Messages self-reference -->
+                <path d="M 1150 300 Q 1200 250 1150 250 Q 1100 250 1150 280" stroke="#f39c12" stroke-width="3" fill="none" marker-end="url(#communication-arrow)"/>
+                <rect x="1160" y="235" width="40" height="15" fill="white" stroke="#f39c12" rx="3"/>
+                <text x="1180" y="245" font-size="11" text-anchor="middle" fill="#f39c12" font-weight="bold">THREAD</text>
+                
+                <!-- Users to Notifications -->
+                <line x1="150" y1="200" x2="400" y2="450" stroke="#f39c12" stroke-width="3" marker-end="url(#communication-arrow)"/>
+                <rect x="260" y="315" width="30" height="15" fill="white" stroke="#f39c12" rx="3"/>
+                <text x="275" y="325" font-size="11" text-anchor="middle" fill="#f39c12" font-weight="bold">1:N</text>
+                
+                <!-- CONTENT CREATION RELATIONSHIPS (Green) -->
+                <!-- Users to Announcements -->
+                <line x1="150" y1="200" x2="150" y2="450" stroke="#27ae60" stroke-width="3" marker-end="url(#secondary-arrow)"/>
+                <rect x="80" y="315" width="30" height="15" fill="white" stroke="#27ae60" rx="3"/>
+                <text x="95" y="325" font-size="11" text-anchor="middle" fill="#27ae60" font-weight="bold">1:N</text>
+                
+                <!-- Users to Learning Activities -->
+                <line x1="200" y1="200" x2="900" y2="250" stroke="#27ae60" stroke-width="3" marker-end="url(#secondary-arrow)"/>
+                <rect x="535" y="215" width="30" height="15" fill="white" stroke="#27ae60" rx="3"/>
+                <text x="550" y="225" font-size="11" text-anchor="middle" fill="#27ae60" font-weight="bold">1:N</text>
+                
+                <!-- Users to Events -->
+                <line x1="200" y1="200" x2="650" y2="450" stroke="#27ae60" stroke-width="3" marker-end="url(#secondary-arrow)"/>
+                <rect x="410" y="315" width="30" height="15" fill="white" stroke="#27ae60" rx="3"/>
+                <text x="425" y="325" font-size="11" text-anchor="middle" fill="#27ae60" font-weight="bold">1:N</text>
+                
+                <!-- Users to FAQs -->
+                <line x1="200" y1="200" x2="900" y2="450" stroke="#27ae60" stroke-width="3" marker-end="url(#secondary-arrow)"/>
+                <rect x="535" y="315" width="30" height="15" fill="white" stroke="#27ae60" rx="3"/>
+                <text x="550" y="325" font-size="11" text-anchor="middle" fill="#27ae60" font-weight="bold">1:N</text>
+                
+                <!-- Users to System Settings -->
+                <line x1="250" y1="80" x2="1050" y2="80" stroke="#27ae60" stroke-width="3" marker-end="url(#secondary-arrow)"/>
+                <rect x="635" y="65" width="30" height="15" fill="white" stroke="#27ae60" rx="3"/>
+                <text x="650" y="75" font-size="11" text-anchor="middle" fill="#27ae60" font-weight="bold">1:N</text>
+            </svg>
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <h3>Database Relationships Summary:</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #e74c3c;">
+                    <h4 style="color: #e74c3c; margin: 0 0 10px 0;">🔴 Primary Relationships</h4>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li><strong>Users → Students:</strong> Parent-child relationship</li>
+                        <li><strong>Users → Guardians:</strong> Authorized contacts</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #3498db;">
+                    <h4 style="color: #3498db; margin: 0 0 10px 0;">🔵 Academic Data</h4>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li><strong>Students → Attendance:</strong> Daily records</li>
+                        <li><strong>Students → Progress Reports:</strong> Academic evaluations</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #9b59b6;">
+                    <h4 style="color: #9b59b6; margin: 0 0 10px 0;">🟣 Schedule Management</h4>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li><strong>Schedules → Students:</strong> Direct assignment</li>
+                        <li><strong>Student Schedules:</strong> Junction table for M:N</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #f39c12;">
+                    <h4 style="color: #f39c12; margin: 0 0 10px 0;">🟠 Communication</h4>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li><strong>Users → Messages:</strong> Sender/Receiver</li>
+                        <li><strong>Messages → Messages:</strong> Threading</li>
+                        <li><strong>Users → Notifications:</strong> System alerts</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #27ae60;">
+                    <h4 style="color: #27ae60; margin: 0 0 10px 0;">🟢 Content Creation</h4>
+                    <ul style="margin: 0; padding-left: 20px;">
+                        <li><strong>Users → Announcements:</strong> Admin posts</li>
+                        <li><strong>Users → Learning Activities:</strong> Educational content</li>
+                        <li><strong>Users → Events:</strong> Calendar items</li>
+                        <li><strong>Users → FAQs:</strong> Help content</li>
+                        <li><strong>Users → System Settings:</strong> Configuration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

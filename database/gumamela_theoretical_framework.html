@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gumamela Daycare Management System - Theoretical Framework</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #e83e8c;
+            --secondary-color: #6f42c1;
+            --accent-color: #20c997;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 15px auto 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .card h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .card h2 i {
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .conceptual-model {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-top: 40px;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .conceptual-model h2 {
+            text-align: center;
+            color: var(--primary-color);
+            margin-bottom: 30px;
+        }
+        
+        .model-diagram {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: var(--light-bg);
+            border-radius: 8px;
+            font-style: italic;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+            
+            .framework-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Gumamela Daycare Management System</h1>
+            <p>Theoretical Framework and Conceptual Model</p>
+        </div>
+        
+        <div class="framework-grid">
+            <div class="card">
+                <h2><i class="fas fa-book"></i> Theoretical Foundation</h2>
+                <p>The Gumamela Daycare Management System is built upon several theoretical frameworks that guide its design and implementation:</p>
+                
+                <h3>1. Social Learning Theory (Bandura, 1977)</h3>
+                <p>Informs the progress tracking and reporting system, emphasizing the importance of observation and modeling in child development.</p>
+                
+                <h3>2. Ecological Systems Theory (Bronfenbrenner, 1979)</h3>
+                <p>Shapes the holistic approach to child development, considering multiple environmental systems that influence a child's growth.</p>
+                
+                <h3>3. Information Systems Success Model (DeLone & McLean, 2003)</h3>
+                <p>Guides the system's design to ensure information quality, system quality, and service quality for optimal user satisfaction.</p>
+            </div>
+            
+            <div class="card">
+                <h2><i class="fas fa-cogs"></i> System Architecture</h2>
+                <p>The system follows a three-tier architecture:</p>
+                
+                <h3>1. Presentation Layer</h3>
+                <p>Responsive web interface built with HTML5, CSS3, and JavaScript, ensuring accessibility across devices.</p>
+                
+                <h3>2. Application Layer</h3>
+                <p>PHP-based backend handling business logic, user authentication, and data processing.</p>
+                
+                <h3>3. Data Layer</h3>
+                <p>MySQL database for secure and efficient data storage and retrieval.</p>
+                
+                <h3>4. Security Framework</h3>
+                <p>Implements role-based access control (RBAC), data encryption, and secure authentication mechanisms.</p>
+            </div>
+        </div>
+        
+        <div class="conceptual-model">
+            <h2>Conceptual Model</h2>
+            <p>The system's design is based on the following conceptual model that illustrates the relationships between key entities:</p>
+            
+            <div class="model-diagram">
+                <p><strong>Users (Admin/Teacher/Parent)</strong> interact with the system to manage <strong>Students</strong>, track <strong>Progress</strong>, and participate in <strong>Events</strong>.</p>
+                <p><strong>Progress Reports</strong> document student development across multiple domains.</p>
+                <p><strong>Attendance Records</strong> track student participation and engagement.</p>
+                <p><strong>System Settings</strong> control application behavior and configurations.</p>
+            </div>
+            
+            <h3>Key Relationships:</h3>
+            <ul>
+                <li>One Parent can have multiple Students</li>
+                <li>One Teacher can manage multiple Students</li>
+                <li>Each Student can have multiple Progress Reports</li>
+                <li>Multiple Students can be registered for multiple Events</li>
+                <li>Attendance is recorded per Student per day</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2><i class="fas fa-chart-line"></i> Performance Metrics</h2>
+            <p>The system includes built-in metrics to evaluate its effectiveness:</p>
+            
+            <h3>1. User Engagement</h3>
+            <p>Track login frequency, feature usage, and session duration.</p>
+            
+            <h3>2. Academic Progress</h3>
+            <p>Monitor student development across different domains over time.</p>
+            
+            <h3>3. System Performance</h3>
+            <p>Response times, error rates, and uptime statistics.</p>
+            
+            <h3>4. User Satisfaction</h3>
+            <p>Periodic feedback collection from all user roles.</p>
+        </div>
+        
+        <div class="footer">
+            <p>Gumamela Daycare Management System &copy; 2025 | Theoretical Framework v1.0</p>
+        </div>
+    </div>
+</body>
+</html>

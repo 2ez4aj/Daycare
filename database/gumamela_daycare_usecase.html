@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gumamela Daycare - Use Case Diagram</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .usecase-container {
+            width: 100%;
+            height: 1000px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            position: relative;
+            background: #fafafa;
+            overflow: auto;
+        }
+        
+        /* System Boundary */
+        .system-boundary {
+            position: absolute;
+            top: 100px;
+            left: 200px;
+            width: 1200px;
+            height: 800px;
+            border: 3px solid #2c3e50;
+            border-radius: 15px;
+            background: rgba(52, 152, 219, 0.05);
+        }
+        
+        .system-title {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: white;
+            padding: 5px 15px;
+            font-weight: bold;
+            font-size: 16px;
+            color: #2c3e50;
+        }
+        
+        /* Actors */
+        .actor {
+            position: absolute;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .actor-icon {
+            width: 60px;
+            height: 80px;
+            margin: 0 auto 10px;
+            background: #3498db;
+            border-radius: 30px 30px 0 0;
+            position: relative;
+        }
+        
+        .actor-icon::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+        }
+        
+        .actor-icon::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 15px;
+            width: 30px;
+            height: 40px;
+            background: white;
+            border-radius: 15px 15px 0 0;
+        }
+        
+        /* Use Cases */
+        .use-case {
+            position: absolute;
+            background: #ecf0f1;
+            border: 2px solid #34495e;
+            border-radius: 50px;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 500;
+            color: #2c3e50;
+            min-width: 120px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        /* Connection Lines */
+        .connection {
+            position: absolute;
+            background: #34495e;
+            z-index: 1;
+        }
+        
+        /* Actor Positioning */
+        .parent-actor { top: 200px; left: 50px; }
+        .admin-actor { top: 350px; left: 1500px; }
+        
+        /* Use Case Categories with different colors */
+        .authentication { background: #e8f5e8; border-color: #27ae60; }
+        .student-mgmt { background: #fff2e8; border-color: #f39c12; }
+        .communication { background: #e8f4fd; border-color: #3498db; }
+        .academic { background: #fdf2e8; border-color: #e67e22; }
+        .system-admin { background: #f8e8f8; border-color: #9b59b6; }
+        
+        /* Legend */
+        .legend {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 12px;
+            z-index: 10;
+        }
+        
+        .legend-item {
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 15px;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gumamela Daycare Management System - Use Case Diagram</h1>
+        
+        <div class="usecase-container">
+            <!-- Legend -->
+            <div class="legend">
+                <h4>Legend</h4>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e8f5e8; border: 1px solid #27ae60;"></div>
+                    <span>Authentication</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #fff2e8; border: 1px solid #f39c12;"></div>
+                    <span>Student Management</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #e8f4fd; border: 1px solid #3498db;"></div>
+                    <span>Communication</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #fdf2e8; border: 1px solid #e67e22;"></div>
+                    <span>Academic Tracking</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #f8e8f8; border: 1px solid #9b59b6;"></div>
+                    <span>System Administration</span>
+                </div>
+            </div>
+            
+            <!-- System Boundary -->
+            <div class="system-boundary">
+                <div class="system-title">Gumamela Daycare Management System</div>
+            </div>
+            
+            <!-- Actors -->
+            <div class="actor parent-actor">
+                <div class="actor-icon"></div>
+                <div>Parent</div>
+            </div>
+            
+            <div class="actor admin-actor">
+                <div class="actor-icon" style="background: #e74c3c;"></div>
+                <div>Admin/Teacher</div>
+            </div>
+            
+            <!-- Authentication Use Cases -->
+            <div class="use-case authentication" style="top: 120px; left: 250px;">
+                Login to System
+            </div>
+            
+            <div class="use-case authentication" style="top: 120px; left: 400px;">
+                Register Account
+            </div>
+            
+            <div class="use-case authentication" style="top: 120px; left: 550px;">
+                Logout
+            </div>
+            
+            <!-- Parent Use Cases -->
+            <div class="use-case student-mgmt" style="top: 200px; left: 250px;">
+                Enroll Child
+            </div>
+            
+            <div class="use-case student-mgmt" style="top: 200px; left: 400px;">
+                View Child Profile
+            </div>
+            
+            <div class="use-case student-mgmt" style="top: 200px; left: 550px;">
+                Manage Guardians
+            </div>
+            
+            <div class="use-case communication" style="top: 280px; left: 250px;">
+                Send Messages
+            </div>
+            
+            <div class="use-case communication" style="top: 280px; left: 400px;">
+                View Announcements
+            </div>
+            
+            <div class="use-case communication" style="top: 280px; left: 550px;">
+                View Notifications
+            </div>
+            
+            <div class="use-case academic" style="top: 360px; left: 250px;">
+                View Attendance
+            </div>
+            
+            <div class="use-case academic" style="top: 360px; left: 400px;">
+                View Progress Reports
+            </div>
+            
+            <div class="use-case academic" style="top: 360px; left: 550px;">
+                View Learning Activities
+            </div>
+            
+            <!-- Admin Use Cases -->
+            <div class="use-case student-mgmt" style="top: 200px; left: 750px;">
+                Manage Students
+            </div>
+            
+            <div class="use-case student-mgmt" style="top: 200px; left: 900px;">
+                Manage Parents
+            </div>
+            
+            <div class="use-case student-mgmt" style="top: 200px; left: 1050px;">
+                Verify Parents
+            </div>
+            
+            <div class="use-case academic" style="top: 280px; left: 750px;">
+                Manage Schedules
+            </div>
+            
+            <div class="use-case academic" style="top: 280px; left: 900px;">
+                Track Attendance
+            </div>
+            
+            <div class="use-case academic" style="top: 280px; left: 1050px;">
+                Create Progress Reports
+            </div>
+            
+            <div class="use-case communication" style="top: 360px; left: 750px;">
+                Create Announcements
+            </div>
+            
+            <div class="use-case communication" style="top: 360px; left: 900px;">
+                Manage Messages
+            </div>
+            
+            <div class="use-case communication" style="top: 360px; left: 1050px;">
+                Send Notifications
+            </div>
+            
+            <div class="use-case academic" style="top: 440px; left: 750px;">
+                Manage Learning Activities
+            </div>
+            
+            <div class="use-case system-admin" style="top: 440px; left: 900px;">
+                Manage Events
+            </div>
+            
+            <div class="use-case system-admin" style="top: 440px; left: 1050px;">
+                Manage FAQs
+            </div>
+            
+            <div class="use-case system-admin" style="top: 520px; left: 750px;">
+                System Settings
+            </div>
+            
+            <div class="use-case system-admin" style="top: 520px; left: 900px;">
+                Generate Reports
+            </div>
+            
+            <div class="use-case system-admin" style="top: 520px; left: 1050px;">
+                Manage User Accounts
+            </div>
+            
+            <!-- Additional Admin Use Cases (formerly Teacher-specific) -->
+            <div class="use-case academic" style="top: 600px; left: 750px;">
+                Record Daily Attendance
+            </div>
+            
+            <div class="use-case academic" style="top: 600px; left: 900px;">
+                Update Student Progress
+            </div>
+            
+            <div class="use-case communication" style="top: 600px; left: 1050px;">
+                Communicate with Parents
+            </div>
+            
+            <div class="use-case student-mgmt" style="top: 680px; left: 900px;">
+                View Student Information
+            </div>
+            
+        </div>
+        
+        <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <h3>Use Case Summary by Actor:</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #3498db;">
+                    <h4 style="color: #3498db; margin: 0 0 10px 0;">👨‍👩‍👧‍👦 Parent Use Cases</h4>
+                    <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+                        <li><strong>Authentication:</strong> Login, Register, Logout</li>
+                        <li><strong>Child Management:</strong> Enroll child, View profile, Manage guardians</li>
+                        <li><strong>Communication:</strong> Send messages, View announcements, View notifications</li>
+                        <li><strong>Academic Tracking:</strong> View attendance, View progress reports, View learning activities</li>
+                    </ul>
+                </div>
+                
+                <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #e74c3c;">
+                    <h4 style="color: #e74c3c; margin: 0 0 10px 0;">👨‍💼 Admin/Teacher Use Cases</h4>
+                    <ul style="margin: 0; padding-left: 20px; font-size: 14px;">
+                        <li><strong>User Management:</strong> Manage students, parents, user accounts, parent verification</li>
+                        <li><strong>Academic Management:</strong> Manage schedules, track attendance, create progress reports</li>
+                        <li><strong>Daily Operations:</strong> Record daily attendance, update student progress</li>
+                        <li><strong>Communication:</strong> Create announcements, manage messages, send notifications, communicate with parents</li>
+                        <li><strong>Content Management:</strong> Manage learning activities, events, FAQs</li>
+                        <li><strong>System Administration:</strong> System settings, generate reports, view student information</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div style="margin-top: 20px; padding: 15px; background: #e8f4f8; border-radius: 8px;">
+                <h4 style="color: #2c3e50; margin: 0 0 10px 0;">🎯 System Features Overview</h4>
+                <p style="margin: 0; font-size: 14px; line-height: 1.6;">
+                    The Gumamela Daycare Management System provides comprehensive functionality for two main user types:
+                    <strong>Parents</strong> can manage their children's enrollment and track academic progress, while
+                    <strong>Admin/Teachers</strong> have full system control including user management, daily operations, 
+                    system configuration, and all teaching responsibilities like attendance tracking and progress reporting.
+                    The system emphasizes communication between all stakeholders while maintaining secure access control.
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

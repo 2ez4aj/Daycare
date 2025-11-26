@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gumamela Daycare - Theoretical Framework</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #e83e8c;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .diagram-container {
+            margin: 30px 0;
+            overflow: auto;
+        }
+        .legend {
+            margin-top: 30px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #e83e8c;
+        }
+        .legend h3 {
+            margin-top: 0;
+            color: #333;
+        }
+        .legend-item {
+            display: inline-block;
+            margin: 5px 15px 5px 0;
+        }
+        .legend-color {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            margin-right: 5px;
+            border-radius: 3px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gumamela Daycare Management System<br>Theoretical Framework</h1>
+        
+        <div class="diagram-container">
+            <div class="mermaid">
+                %%{init: {'theme': 'default', 'themeVariables': {
+                    'primaryColor': '#f8f9fa',
+                    'primaryTextColor': '#333',
+                    'primaryBorderColor': '#333',
+                    'lineColor': '#666',
+                    'secondaryColor': '#f1f1f1',
+                    'tertiaryColor': '#e9ecef'
+                }}}%%
+
+                graph TD
+                    %% External Influences (Top Row)
+                    classDef external fill:#e3f2fd,stroke:#2196f3,color:#0d47a1
+                    classDef needs fill:#e8f5e9,stroke:#4caf50,color:#1b5e20
+                    classDef system fill:#f3e5f5,stroke:#9c27b0,color:#4a148c
+                    classDef outcomes fill:#fff3e0,stroke:#ff9800,color:#e65100
+                    
+                    %% External Influences
+                    A[Educational Theories<br><small>Social Learning, Ecological Systems, etc.</small>]:::external
+                    B[Stakeholder Needs<br><small>Parents, Teachers, Admin</small>]:::external
+                    C[Regulatory Requirements<br><small>Data Privacy, Child Protection</small>]:::external
+                    D[Best Practices<br><small>ECE Standards, Technology Trends</small>]:::external
+                    
+                    %% System Requirements
+                    E[System Requirements<br><small>Functional & Non-functional</small>]:::needs
+                    
+                    %% System Components
+                    F[System Design & Architecture]:::system
+                    G[User Interface & Experience]:::system
+                    
+                    %% Outcomes
+                    H[Child Development Outcomes<br><small>Progress Tracking, Assessments</small>]:::outcomes
+                    I[Operational Efficiency<br><small>Streamlined Processes</small>]:::outcomes
+                    J[Parental Engagement<br><small>Communication, Involvement</small>]:::outcomes
+                    
+                    %% Relationships
+                    A --> E
+                    B --> E
+                    C --> E
+                    D --> E
+                    
+                    E --> F
+                    E --> G
+                    
+                    F --> H
+                    F --> I
+                    G --> J
+                    G --> H
+                    
+                    %% Feedback Loops
+                    H -.->|Informs| A
+                    I -.->|Supports| B
+                    J -.->|Enhances| B
+                    
+                    %% Legend
+                    classDef legendExternal fill:#e3f2fd,stroke:#2196f3,color:#0d47a1
+                    classDef legendNeeds fill:#e8f5e9,stroke:#4caf50,color:#1b5e20
+                    classDef legendSystem fill:#f3e5f5,stroke:#9c27b0,color:#4a148c
+                    classDef legendOutcomes fill:#fff3e0,stroke:#ff9800,color:#e65100
+            </div>
+        </div>
+        
+        <div class="legend">
+            <h3>Legend</h3>
+            <div class="legend-item"><span class="legend-color" style="background-color: #e3f2fd; border: 1px solid #2196f3;"></span> External Influences</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #e8f5e9; border: 1px solid #4caf50;"></span> System Requirements</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #f3e5f5; border: 1px solid #9c27b0;"></span> System Components</div>
+            <div class="legend-item"><span class="legend-color" style="background-color: #fff3e0; border: 1px solid #ff9800;"></span> Outcomes</div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose',
+            fontFamily: 'Arial, sans-serif',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis',
+                defaultRenderer: 'dagre',
+                rankSpacing: 80,
+                nodeSpacing: 30,
+                rankDir: 'TB'
+            },
+            themeVariables: {
+                fontSize: '14px',
+                fontFamily: 'Arial, sans-serif'
+            }
+        });
+    </script>
+</body>
+</html>

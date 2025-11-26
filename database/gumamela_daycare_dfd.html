@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gumamela Daycare Management System - Data Flow Diagrams</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            padding: 30px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin: 0;
+        }
+        
+        .dfd-section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+        
+        .dfd-diagram {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            margin: 30px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            overflow: visible;
+        }
+        
+        .dfd-level1 {
+            height: 900px;
+        }
+        
+        /* DFD Elements */
+        .external-entity {
+            position: absolute;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            min-width: 100px;
+            font-size: 14px;
+        }
+        
+        .process {
+            position: absolute;
+            padding: 20px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            line-height: 1.2;
+        }
+        
+        .data-store {
+            position: absolute;
+            padding: 10px 20px;
+            background: white;
+            border: 3px solid #27ae60;
+            color: #27ae60;
+            font-weight: 600;
+            text-align: center;
+            min-width: 140px;
+            font-size: 14px;
+            border-left: none;
+        }
+        
+        .data-store::before {
+            content: '';
+            position: absolute;
+            left: -3px;
+            top: -3px;
+            bottom: -3px;
+            width: 6px;
+            background: #27ae60;
+        }
+        
+        /* Level 1 specific processes */
+        .process-level1 {
+            width: 100px;
+            height: 100px;
+            font-size: 12px;
+        }
+        
+        /* Data flow arrows and labels */
+        .flow-label {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #2c3e50;
+            border: 1px solid #bdc3c7;
+            z-index: 10;
+        }
+        
+        .legend {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .legend h3 {
+            color: #2c3e50;
+            margin: 0 0 15px 0;
+        }
+        
+        .legend-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .legend-box {
+            width: 40px;
+            height: 25px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: white;
+        }
+        
+        .legend-circle {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+        }
+        
+        .legend-datastore {
+            background: white;
+            border: 2px solid #27ae60;
+            color: #27ae60;
+            position: relative;
+        }
+        
+        .legend-datastore::before {
+            content: '';
+            position: absolute;
+            left: -2px;
+            top: -2px;
+            bottom: -2px;
+            width: 4px;
+            background: #27ae60;
+        }
+        
+        .description {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f4f8;
+            border-radius: 10px;
+        }
+        
+        .description h3 {
+            color: #2c3e50;
+            margin: 0 0 15px 0;
+        }
+        
+        .description-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .description-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .description-item h4 {
+            color: #2c3e50;
+            margin: 0 0 10px 0;
+        }
+        
+        .description-item ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌺 Gumamela Daycare Management System</h1>
+            <p>Data Flow Diagrams (DFD) - Level 0 & Level 1</p>
+        </div>
+        
+        <!-- DFD Level 0 -->
+        <div class="dfd-section">
+            <div class="section-title">📊 DFD Level 0 - Context Diagram</div>
+            
+            <div class="dfd-diagram">
+                <!-- External Entities -->
+                <div class="external-entity" style="top: 50px; left: 100px;">
+                    Parent
+                </div>
+                
+                <div class="external-entity" style="top: 50px; right: 100px;">
+                    Admin/Teacher
+                </div>
+                
+                <!-- Central Process -->
+                <div class="process" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    Gumamela Daycare<br>Management<br>System
+                </div>
+                
+                <!-- Data Store -->
+                <div class="data-store" style="bottom: 100px; left: 50%; transform: translateX(-50%);">
+                    D1 Daycare Database
+                </div>
+                
+                <!-- Data Flow Labels -->
+                <div class="flow-label" style="top: 120px; left: 300px;">Enrollment Request</div>
+                <div class="flow-label" style="top: 180px; left: 250px;">Child Information</div>
+                <div class="flow-label" style="top: 240px; left: 300px;">Progress Reports</div>
+                <div class="flow-label" style="top: 300px; left: 250px;">Messages</div>
+                
+                <div class="flow-label" style="top: 120px; right: 300px;">Student Data</div>
+                <div class="flow-label" style="top: 180px; right: 250px;">Attendance Records</div>
+                <div class="flow-label" style="top: 240px; right: 300px;">System Reports</div>
+                <div class="flow-label" style="top: 300px; right: 250px;">Announcements</div>
+                
+                <div class="flow-label" style="bottom: 200px; left: 300px;">Store Data</div>
+                <div class="flow-label" style="bottom: 200px; right: 300px;">Retrieve Data</div>
+                
+                <!-- SVG for data flow arrows -->
+                <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5;">
+                    <defs>
+                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                            <polygon points="0 0, 10 3.5, 0 7" fill="#2c3e50"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- Parent to System - curved paths to avoid overlap -->
+                    <path d="M 220 80 Q 350 50 550 200" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <path d="M 220 110 Q 320 80 520 220" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    
+                    <!-- System to Parent - lower curved paths -->
+                    <path d="M 580 350 Q 350 420 220 140" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <path d="M 620 370 Q 380 440 220 170" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    
+                    <!-- Admin to System - curved paths from right -->
+                    <path d="M 1180 80 Q 1050 50 850 200" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <path d="M 1180 110 Q 1080 80 880 220" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    
+                    <!-- System to Admin - lower curved paths -->
+                    <path d="M 820 350 Q 1050 420 1180 140" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    <path d="M 780 370 Q 1020 440 1180 170" stroke="#2c3e50" stroke-width="2" fill="none" marker-end="url(#arrowhead)"/>
+                    
+                    <!-- System to Database - straight vertical lines with offset -->
+                    <line x1="680" y1="400" x2="680" y2="500" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <line x1="720" y1="500" x2="720" y2="400" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowhead)"/>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- DFD Level 1 -->
+        <div class="dfd-section">
+            <div class="section-title">🔍 DFD Level 1 - System Decomposition</div>
+            
+            <div class="dfd-diagram dfd-level1">
+                <!-- External Entities -->
+                <div class="external-entity" style="top: 50px; left: 50px;">
+                    Parent
+                </div>
+                
+                <div class="external-entity" style="top: 50px; right: 50px;">
+                    Admin/Teacher
+                </div>
+                
+                <!-- Level 1 Processes -->
+                <div class="process process-level1" style="top: 150px; left: 200px;">
+                    1<br>User<br>Authentication
+                </div>
+                
+                <div class="process process-level1" style="top: 150px; left: 400px;">
+                    2<br>Student<br>Management
+                </div>
+                
+                <div class="process process-level1" style="top: 150px; left: 600px;">
+                    3<br>Attendance<br>Tracking
+                </div>
+                
+                <div class="process process-level1" style="top: 150px; left: 800px;">
+                    4<br>Communication<br>Management
+                </div>
+                
+                <div class="process process-level1" style="top: 150px; left: 1000px;">
+                    5<br>Progress<br>Reporting
+                </div>
+                
+                <div class="process process-level1" style="top: 150px; left: 1200px;">
+                    6<br>System<br>Administration
+                </div>
+                
+                <div class="process process-level1" style="top: 350px; left: 300px;">
+                    7<br>File<br>Management
+                </div>
+                
+                <div class="process process-level1" style="top: 350px; left: 500px;">
+                    8<br>Notification<br>System
+                </div>
+                
+                <div class="process process-level1" style="top: 350px; left: 700px;">
+                    9<br>Report<br>Generation
+                </div>
+                
+                <div class="process process-level1" style="top: 350px; left: 900px;">
+                    10<br>Data<br>Validation
+                </div>
+                
+                <!-- Data Stores -->
+                <div class="data-store" style="top: 550px; left: 100px;">
+                    D1 Users
+                </div>
+                
+                <div class="data-store" style="top: 550px; left: 300px;">
+                    D2 Students
+                </div>
+                
+                <div class="data-store" style="top: 550px; left: 500px;">
+                    D3 Attendance
+                </div>
+                
+                <div class="data-store" style="top: 550px; left: 700px;">
+                    D4 Messages
+                </div>
+                
+                <div class="data-store" style="top: 550px; left: 900px;">
+                    D5 Progress Reports
+                </div>
+                
+                <div class="data-store" style="top: 550px; left: 1100px;">
+                    D6 System Settings
+                </div>
+                
+                <div class="data-store" style="top: 650px; left: 200px;">
+                    D7 Announcements
+                </div>
+                
+                <div class="data-store" style="top: 650px; left: 400px;">
+                    D8 Learning Activities
+                </div>
+                
+                <div class="data-store" style="top: 650px; left: 600px;">
+                    D9 Events
+                </div>
+                
+                <div class="data-store" style="top: 650px; left: 800px;">
+                    D10 File Uploads
+                </div>
+                
+                <!-- Data Flow Labels -->
+                <div class="flow-label" style="top: 100px; left: 180px;">Login Credentials</div>
+                <div class="flow-label" style="top: 100px; left: 350px;">Student Info</div>
+                <div class="flow-label" style="top: 100px; left: 550px;">Attendance Data</div>
+                <div class="flow-label" style="top: 100px; left: 750px;">Messages</div>
+                <div class="flow-label" style="top: 100px; left: 950px;">Progress Data</div>
+                <div class="flow-label" style="top: 100px; left: 1150px;">System Config</div>
+                
+                <!-- SVG for Level 1 data flows -->
+                <svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5;">
+                    <defs>
+                        <marker id="arrowhead1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+                            <polygon points="0 0, 8 3, 0 6" fill="#2c3e50"/>
+                        </marker>
+                    </defs>
+                    
+                    <!-- Parent to processes - curved paths to avoid overlap -->
+                    <path d="M 150 70 Q 180 120 230 150" stroke="#2c3e50" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 150 80 Q 250 100 430 150" stroke="#2c3e50" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 150 90 Q 350 80 630 150" stroke="#2c3e50" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 150 100 Q 450 60 830 150" stroke="#2c3e50" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    
+                    <!-- Admin to processes - curved paths from right -->
+                    <path d="M 1350 70 Q 1320 120 1270 150" stroke="#2c3e50" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 1350 80 Q 1250 100 1070 150" stroke="#2c3e50" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 1350 90 Q 1150 80 870 150" stroke="#2c3e50" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 1350 100 Q 1050 60 670 150" stroke="#2c3e50" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    
+                    <!-- Processes to data stores - curved paths to avoid crossing -->
+                    <path d="M 230 250 Q 200 400 170 550" stroke="#27ae60" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 430 250 Q 400 400 370 550" stroke="#27ae60" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 630 250 Q 600 400 570 550" stroke="#27ae60" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 830 250 Q 800 400 770 550" stroke="#27ae60" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 1030 250 Q 1000 400 970 550" stroke="#27ae60" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 1230 250 Q 1200 400 1170 550" stroke="#27ae60" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    
+                    <!-- Inter-process connections - staggered heights to avoid overlap -->
+                    <path d="M 300 180 Q 350 170 400 180" stroke="#3498db" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 500 190 Q 550 180 600 190" stroke="#3498db" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 700 200 Q 750 190 800 200" stroke="#3498db" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 900 210 Q 950 200 1000 210" stroke="#3498db" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    
+                    <!-- Processes to lower level processes - curved to avoid overlap -->
+                    <path d="M 320 250 Q 300 300 350 350" stroke="#f39c12" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 520 250 Q 500 300 550 350" stroke="#f39c12" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 720 250 Q 700 300 750 350" stroke="#f39c12" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 920 250 Q 900 300 950 350" stroke="#f39c12" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    
+                    <!-- Lower processes to additional data stores - clean paths -->
+                    <path d="M 350 450 Q 280 600 270 650" stroke="#27ae60" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 550 450 Q 480 600 470 650" stroke="#27ae60" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 750 450 Q 680 600 670 650" stroke="#27ae60" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                    <path d="M 950 450 Q 880 600 870 650" stroke="#27ae60" stroke-width="1.5" fill="none" marker-end="url(#arrowhead1)"/>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <h3>🎯 DFD Legend</h3>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-box" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">Entity</div>
+                    <span>External Entities (Users)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box legend-circle" style="background: linear-gradient(135deg, #3498db, #2980b9);">Process</div>
+                    <span>System Processes</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-box legend-datastore">D1</div>
+                    <span>Data Stores (Database Tables)</span>
+                </div>
+                <div class="legend-item">
+                    <div style="width: 40px; height: 2px; background: #2c3e50; position: relative;">
+                        <div style="position: absolute; right: -5px; top: -3px; width: 0; height: 0; border-left: 8px solid #2c3e50; border-top: 4px solid transparent; border-bottom: 4px solid transparent;"></div>
+                    </div>
+                    <span>Data Flow Direction</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="description">
+            <h3>📋 DFD Analysis</h3>
+            <p style="margin: 0 0 20px 0; font-size: 14px; line-height: 1.6;">
+                The Data Flow Diagrams show how data moves through the Gumamela Daycare Management System, 
+                from external entities through various processes to data storage and back to users.
+            </p>
+            
+            <div class="description-grid">
+                <div class="description-item">
+                    <h4>📊 Level 0 - Context Diagram</h4>
+                    <ul>
+                        <li>Shows the system as a single process</li>
+                        <li>Two external entities: Parent and Admin/Teacher</li>
+                        <li>One central data store: Daycare Database</li>
+                        <li>Data flows represent major interactions</li>
+                        <li>High-level view of system boundaries</li>
+                    </ul>
+                </div>
+                
+                <div class="description-item">
+                    <h4>🔍 Level 1 - Process Decomposition</h4>
+                    <ul>
+                        <li>Breaks down the main system into 10 processes</li>
+                        <li>Shows detailed data stores (D1-D10)</li>
+                        <li>Illustrates inter-process communication</li>
+                        <li>Reveals data transformation points</li>
+                        <li>Maps to actual system functionality</li>
+                    </ul>
+                </div>
+                
+                <div class="description-item">
+                    <h4>👥 External Entities</h4>
+                    <ul>
+                        <li><strong>Parent:</strong> Enrolls children, views progress, communicates</li>
+                        <li><strong>Admin/Teacher:</strong> Manages system, tracks attendance, creates reports</li>
+                        <li>Both entities interact with multiple processes</li>
+                        <li>Role-based access controls data flow</li>
+                    </ul>
+                </div>
+                
+                <div class="description-item">
+                    <h4>💾 Data Stores</h4>
+                    <ul>
+                        <li><strong>D1-D6:</strong> Core operational data</li>
+                        <li><strong>D7-D10:</strong> Content and file management</li>
+                        <li>Each store corresponds to database tables</li>
+                        <li>Supports CRUD operations</li>
+                        <li>Maintains data integrity and relationships</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
